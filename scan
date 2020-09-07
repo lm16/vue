@@ -1,0 +1,16 @@
+import Vue from 'vue'
+
+const requireComponents = require.context('@/components', true, /\.vue$/)
+
+export const scanComponent = ()=>{
+
+
+    requireComponents.keys().forEach(item => {
+
+        const singleComponent = requireComponents(item)
+    
+        const itemName = item.slice(item.lastIndexOf('/')+1, item.lastIndexOf('.'))
+
+        Vue.component(itemName, singleComponent)
+    })
+}
